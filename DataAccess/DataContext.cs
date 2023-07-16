@@ -93,10 +93,8 @@ namespace DataAccess
             {
                 using (SqlCommand command = CreateCommand(CommandType.Text, commandText, connection, parameters))
                 {
-                    var last = command.ExecuteScalar();
-                    Console.WriteLine(last);
                     int lastInsertedID = 0;
-                    lastInsertedID = (int)command.ExecuteScalar();
+                    lastInsertedID = (int)command.ExecuteNonQuery();
                     return lastInsertedID;
                 }
             }

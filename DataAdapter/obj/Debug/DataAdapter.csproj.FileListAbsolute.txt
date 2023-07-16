@@ -1,0 +1,11 @@
+E:\Task\MY\DataAdapter\bin\Debug\DataAdapter.dll
+E:\Task\MY\DataAdapter\bin\Debug\DataAdapter.pdb
+E:\Task\MY\DataAdapter\bin\Debug\DataAccess.dll
+E:\Task\MY\DataAdapter\bin\Debug\Domain.dll
+E:\Task\MY\DataAdapter\bin\Debug\DataAccess.pdb
+E:\Task\MY\DataAdapter\bin\Debug\Domain.pdb
+E:\Task\MY\DataAdapter\obj\Debug\DataAdapter.csproj.AssemblyReference.cache
+E:\Task\MY\DataAdapter\obj\Debug\DataAdapter.csproj.CoreCompileInputs.cache
+E:\Task\MY\DataAdapter\obj\Debug\DataAdapter.csproj.CopyComplete
+E:\Task\MY\DataAdapter\obj\Debug\DataAdapter.dll
+E:\Task\MY\DataAdapter\obj\Debug\DataAdapter.pdb

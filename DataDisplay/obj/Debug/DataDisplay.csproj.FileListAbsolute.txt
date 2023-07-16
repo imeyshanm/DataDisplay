@@ -1,0 +1,5 @@
+E:\Task\MY\DataDisplay\obj\Debug\DataDisplay.csproj.AssemblyReference.cache
+E:\Task\MY\DataDisplay\obj\Debug\DataDisplay.UI.frmEstimateType.resources
+E:\Task\MY\DataDisplay\obj\Debug\DataDisplay.Properties.Resources.resources
+E:\Task\MY\DataDisplay\obj\Debug\DataDisplay.csproj.GenerateResource.cache
+E:\Task\MY\DataDisplay\obj\Debug\DataDisplay.csproj.CoreCompileInputs.cache

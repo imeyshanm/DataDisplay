@@ -27,7 +27,7 @@ namespace DataAdapter
                 string SQL = @" SELECT [SubjectID]
                             ,[Name]
                              FROM [dbo].[Subject] WHERE SubjectID="+ SubjectID + " ";
-                var lsit = _dataContext.Read(SQL, MakeSubject);
+                var lsit = _dataContext.Read(CommandType.Text,SQL, MakeSubject);
 
 
                 return lsit.FirstOrDefault();

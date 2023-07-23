@@ -66,12 +66,12 @@ namespace DataAccess
         /// <param name="commandText"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public int Insert(string commandText, params object[] parameters)
+        public int Insert(CommandType commandType, string commandText, params object[] parameters)
         {
             using (SqlConnection connection = CreateConnection())
             {
                 commandText += ";SELECT SCOPE_IDENTITY()";
-                using (SqlCommand command = CreateCommand(CommandType.Text, commandText, connection, parameters))
+                using (SqlCommand command = CreateCommand(commandType, commandText, connection, parameters))
                 {
 
                     int lastInsertedID = 0;
@@ -87,11 +87,11 @@ namespace DataAccess
         /// <param name="commandText"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public int Update(string commandText, params object[] parameters)
+        public int Update(CommandType commandType, string commandText, params object[] parameters)
         {
             using (SqlConnection connection = CreateConnection())
             {
-                using (SqlCommand command = CreateCommand(CommandType.Text, commandText, connection, parameters))
+                using (SqlCommand command = CreateCommand(commandType, commandText, connection, parameters))
                 {
                     int lastInsertedID = 0;
                     lastInsertedID = (int)command.ExecuteNonQuery();
@@ -101,7 +101,7 @@ namespace DataAccess
 
         }
 
-        public int Delete(string commandText, params object[] parameters)
+        public int Delete(CommandType commandType, string commandText, params object[] parameters)
         {
             using (SqlConnection connection = CreateConnection())
             {
@@ -176,11 +176,11 @@ namespace DataAccess
         /// <param name="projection"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public IEnumerable<T> Read<T>(string commandText, Func<IDataReader, T> projection, params object[] parameters)
+        public IEnumerable<T> Read<T>(CommandType commandType, string commandText, Func<IDataReader, T> projection, params object[] parameters)
         {
             using (SqlConnection connection = CreateConnection())
             {
-                using (SqlCommand command = CreateCommand(CommandType.Text, commandText, connection, parameters))
+                using (SqlCommand command = CreateCommand(commandType, commandText, connection, parameters))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -196,11 +196,11 @@ namespace DataAccess
             }
 
         }
-        public IEnumerable<T> Read<T>(string commandText, Func<IDataReader, T> projection)
+        public IEnumerable<T> Read<T>(CommandType commandType, string commandText, Func<IDataReader, T> projection)
         {
             using (SqlConnection connection = CreateConnection())
             {
-                using (SqlCommand command = CreateCommand(CommandType.Text, commandText, connection))
+                using (SqlCommand command = CreateCommand(commandType, commandText, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
                     {

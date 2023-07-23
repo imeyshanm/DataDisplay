@@ -29,7 +29,7 @@ namespace DataAdapter
       ,[SubjectID]
       ,[Marks]
   FROM [dbo].[Exam] WHERE ExamID = " + ExamID + ";";
-                var lsit = _dataContext.Read(SQL, MakeExam);
+                var lsit = _dataContext.Read(CommandType.Text,SQL, MakeExam);
 
 
                 return lsit.FirstOrDefault();

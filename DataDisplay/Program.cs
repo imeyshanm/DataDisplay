@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DataDisplay.UI;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,11 +17,11 @@ namespace DataDisplay
         static void Main()
         {
             var IDataContexts = new DataContext(ConfigurationManager.ConnectionStrings["DataDisplay"].ConnectionString);
-
+            var logger = LogManager.GetCurrentClassLogger();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StudentList(IDataContexts));
+            Application.Run(new StudentList(IDataContexts, logger));
         }
     }
 }

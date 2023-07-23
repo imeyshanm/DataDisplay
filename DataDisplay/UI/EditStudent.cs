@@ -3,8 +3,7 @@ using Domain;
 using System;
 using System.Windows.Forms;
 using DataAdapter;
-
-
+using NLog;
 
 namespace DataDisplay.UI
 {
@@ -12,11 +11,13 @@ namespace DataDisplay.UI
     {
         private Student _student;
         IDataContext _dataContext;
-        public EditStudent(Student student, IDataContext dataContext)
+        ILogger _logger;
+        public EditStudent(Student student, IDataContext dataContext, ILogger logger)
         {
             InitializeComponent();
             _student = student;
             _dataContext = dataContext;
+            _logger = logger;
             LoadStudentData();
         }
 
@@ -39,47 +40,56 @@ namespace DataDisplay.UI
 
         private void tsbSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtFirstName.Text))
+            try
             {
-                errorProvider1.SetError(txtFirstName, "Required");
-                return;
-            }
-
-            if (_student==null)
-            {
-                _student = new Student();
-            }
-
-            _student.FirstName= txtFirstName.Text;
-            _student.LastName = txtLastName.Text;
-            _student.DateofBirth=Convert.ToDateTime(dpDOB.Value);
-            _student.StreetAddress = txtStreetAddress.Text;
-             _student.City= txtCity.Text;
-           _student.Sate = txtState.Text;
-            _student.ZipCode= txtZipCode.Text;
-            _student.ContactNo= txtContactNo.Text;
-             _student.Email=txtEmail.Text ;
-            _student.Active= cbActive.Checked;
-
-            var StudentTbl = new StudentTbl(_dataContext);
-            if (_student.StudentID>0)
-            {
-                int update = StudentTbl.UpdateStudent(_student);
-                if (update==1)
+                if (string.IsNullOrWhiteSpace(txtFirstName.Text))
                 {
-                    DialogResult = DialogResult.OK;
+                    errorProvider1.SetError(txtFirstName, "Required");
+                    return;
                 }
-            }
-            else
-            {
-                int save = StudentTbl.SaveStudent(_student);
-                if (save>0)
+
+                if (_student == null)
                 {
-                    DialogResult = DialogResult.OK;
+                    _student = new Student();
                 }
+
+                _student.FirstName = txtFirstName.Text;
+                _student.LastName = txtLastName.Text;
+                _student.DateofBirth = Convert.ToDateTime(dpDOB.Value);
+                _student.StreetAddress = txtStreetAddress.Text;
+                _student.City = txtCity.Text;
+                _student.Sate = txtState.Text;
+                _student.ZipCode = txtZipCode.Text;
+                _student.ContactNo = txtContactNo.Text;
+                _student.Email = txtEmail.Text;
+                _student.Active = cbActive.Checked;
+
+                var StudentTbl = new StudentTbl(_dataContext);
+                if (_student.StudentID > 0)
+                {
+                    int update = StudentTbl.UpdateStudent(_student);
+                    if (update == 1)
+                    {
+                        DialogResult = DialogResult.OK;
+                    }
+                }
+                else
+                {
+                    int save = StudentTbl.SaveStudent(_student);
+                    if (save > 0)
+                    {
+                        DialogResult = DialogResult.OK;
+                    }
+                }
+
+
             }
-           
-            
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("An error has occurred.", this.Text, MessageBoxButtons.OK);
+                _logger.Error(ex);
+            }           
 
         }
     }

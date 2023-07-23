@@ -21,20 +21,9 @@ namespace DataAdapter
         {
             try
             {
-
-                string SQL = @"SELECT [StudentID]
-      ,[FirstName]
-      ,[LastName]
-      ,[DateofBirth]
-      ,[StreetAddress]
-      ,[City]
-      ,[Sate]
-      ,[ZipCode]
-      ,[ContactNo]
-      ,[Email]
-      ,[Active]
-  FROM [dbo].[Student] WHERE  StudentID="+ StudentID + " ";
-                var lsit = _dataContext.Read(SQL, MakeStudent);
+                var parameters = new object[] { "@StudentID", StudentID};
+                string SQL = @"SPGetStudents";
+                var lsit = _dataContext.Read(CommandType.StoredProcedure,SQL, MakeStudent,parameters);
                
 
                 return lsit.FirstOrDefault();
@@ -50,20 +39,9 @@ namespace DataAdapter
         {
             try
             {
-
-                string SQL = @"SELECT [StudentID]
-      ,[FirstName]
-      ,[LastName]
-      ,[DateofBirth]
-      ,[StreetAddress]
-      ,[City]
-      ,[Sate]
-      ,[ZipCode]
-      ,[ContactNo]
-      ,[Email]
-      ,[Active]
-  FROM [dbo].[Student] ";
-                var lsit = _dataContext.Read(SQL, MakeStudent).ToList();
+                var parameters = new object[] { "@StudentID",-1 };
+                string SQL = @"SPGetStudents";
+                var lsit = _dataContext.Read(CommandType.StoredProcedure,SQL, MakeStudent, parameters).ToList();
 
 
                 return lsit;
@@ -97,31 +75,8 @@ namespace DataAdapter
             try
             {
 
-                string SQL = @"
-                  
-INSERT INTO [dbo].[Student]
-           ([FirstName]
-           ,[LastName]
-           ,[DateofBirth]
-           ,[StreetAddress]
-           ,[City]
-           ,[Sate]
-           ,[ZipCode]
-           ,[ContactNo]
-           ,[Email]
-           ,[Active])
-     VALUES
-           (@FirstName
-           ,@LastName
-           ,@DateofBirth
-           ,@StreetAddress
-           ,@City
-           ,@Sate
-           ,@ZipCode
-           ,@ContactNo
-           ,@Email
-           ,@Active) ";
-                return _dataContext.Insert(SQL, Extract(student));
+                string SQL = @"SPSaveStudent";
+                return _dataContext.Insert(CommandType.StoredProcedure,SQL, Extract(student));
             }
             catch (Exception e)
             {
@@ -135,19 +90,8 @@ INSERT INTO [dbo].[Student]
             try
             {
                
-                string SQL = @"UPDATE [dbo].[Student]
-   SET [FirstName] = @FirstName
-      ,[LastName] = @LastName
-      ,[DateofBirth] = @DateofBirth
-      ,[StreetAddress] = @StreetAddress
-      ,[City] = @City
-      ,[Sate] = @Sate
-      ,[ZipCode] = @ZipCode
-      ,[ContactNo] = @ContactNo
-      ,[Email] = @Email
-      ,[Active] = @Active
- WHERE StudentID=@StudentID";
-                return _dataContext.Update(SQL, Extract(student));
+                string SQL = @"SPSaveStudent";
+                return _dataContext.Update(CommandType.StoredProcedure,SQL, Extract(student));
 
             }
             catch (Exception e)

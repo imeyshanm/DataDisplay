@@ -1,6 +1,0 @@
-E:\Task\MY\Domain\bin\Debug\Domain.dll
-E:\Task\MY\Domain\bin\Debug\Domain.pdb
-E:\Task\MY\Domain\obj\Debug\Domain.csproj.AssemblyReference.cache
-E:\Task\MY\Domain\obj\Debug\Domain.csproj.CoreCompileInputs.cache
-E:\Task\MY\Domain\obj\Debug\Domain.dll
-E:\Task\MY\Domain\obj\Debug\Domain.pdb

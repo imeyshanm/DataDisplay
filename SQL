@@ -1,6 +1,6 @@
- 
-
-/****** Object:  Database [Task]    Script Date: 16/07/2023 11:01:11 PM ******/
+USE [master]
+GO
+/****** Object:  Database [Task]    Script Date: 23/07/2023 11:36:11 AM ******/
 CREATE DATABASE [Task]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -9,118 +9,82 @@ CREATE DATABASE [Task]
 ( NAME = N'Task_log', FILENAME = N'E:\SPIL Data\Temp\New folder\Task_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
  WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
 GO
-
+ALTER DATABASE [Task] SET COMPATIBILITY_LEVEL = 160
+GO
 IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
 begin
 EXEC [Task].[dbo].[sp_fulltext_database] @action = 'enable'
 end
 GO
-
 ALTER DATABASE [Task] SET ANSI_NULL_DEFAULT OFF 
 GO
-
 ALTER DATABASE [Task] SET ANSI_NULLS OFF 
 GO
-
 ALTER DATABASE [Task] SET ANSI_PADDING OFF 
 GO
-
 ALTER DATABASE [Task] SET ANSI_WARNINGS OFF 
 GO
-
 ALTER DATABASE [Task] SET ARITHABORT OFF 
 GO
-
 ALTER DATABASE [Task] SET AUTO_CLOSE OFF 
 GO
-
 ALTER DATABASE [Task] SET AUTO_SHRINK OFF 
 GO
-
 ALTER DATABASE [Task] SET AUTO_UPDATE_STATISTICS ON 
 GO
-
 ALTER DATABASE [Task] SET CURSOR_CLOSE_ON_COMMIT OFF 
 GO
-
 ALTER DATABASE [Task] SET CURSOR_DEFAULT  GLOBAL 
 GO
-
 ALTER DATABASE [Task] SET CONCAT_NULL_YIELDS_NULL OFF 
 GO
-
 ALTER DATABASE [Task] SET NUMERIC_ROUNDABORT OFF 
 GO
-
 ALTER DATABASE [Task] SET QUOTED_IDENTIFIER OFF 
 GO
-
 ALTER DATABASE [Task] SET RECURSIVE_TRIGGERS OFF 
 GO
-
 ALTER DATABASE [Task] SET  DISABLE_BROKER 
 GO
-
 ALTER DATABASE [Task] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
 GO
-
 ALTER DATABASE [Task] SET DATE_CORRELATION_OPTIMIZATION OFF 
 GO
-
 ALTER DATABASE [Task] SET TRUSTWORTHY OFF 
 GO
-
 ALTER DATABASE [Task] SET ALLOW_SNAPSHOT_ISOLATION OFF 
 GO
-
 ALTER DATABASE [Task] SET PARAMETERIZATION SIMPLE 
 GO
-
 ALTER DATABASE [Task] SET READ_COMMITTED_SNAPSHOT OFF 
 GO
-
 ALTER DATABASE [Task] SET HONOR_BROKER_PRIORITY OFF 
 GO
-
 ALTER DATABASE [Task] SET RECOVERY FULL 
 GO
-
 ALTER DATABASE [Task] SET  MULTI_USER 
 GO
-
 ALTER DATABASE [Task] SET PAGE_VERIFY CHECKSUM  
 GO
-
 ALTER DATABASE [Task] SET DB_CHAINING OFF 
 GO
-
 ALTER DATABASE [Task] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
 GO
-
 ALTER DATABASE [Task] SET TARGET_RECOVERY_TIME = 60 SECONDS 
 GO
-
 ALTER DATABASE [Task] SET DELAYED_DURABILITY = DISABLED 
 GO
-
 ALTER DATABASE [Task] SET ACCELERATED_DATABASE_RECOVERY = OFF  
 GO
-
+EXEC sys.sp_db_vardecimal_storage_format N'Task', N'ON'
+GO
 ALTER DATABASE [Task] SET QUERY_STORE = ON
 GO
-
 ALTER DATABASE [Task] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
 GO
-
-ALTER DATABASE [Task] SET  READ_WRITE 
-GO
-
-
-
-
 USE [Task]
 GO
-/****** Object:  Table [dbo].[Exam]    Script Date: 16/07/2023 11:00:19 PM ******/
+/****** Object:  Table [dbo].[Exam]    Script Date: 23/07/2023 11:36:11 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -136,7 +100,7 @@ CREATE TABLE [dbo].[Exam](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Student]    Script Date: 16/07/2023 11:00:19 PM ******/
+/****** Object:  Table [dbo].[Student]    Script Date: 23/07/2023 11:36:11 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -159,7 +123,7 @@ CREATE TABLE [dbo].[Student](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Subject]    Script Date: 16/07/2023 11:00:19 PM ******/
+/****** Object:  Table [dbo].[Subject]    Script Date: 23/07/2023 11:36:11 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -175,9 +139,154 @@ CREATE TABLE [dbo].[Subject](
 GO
 SET IDENTITY_INSERT [dbo].[Student] ON 
 GO
-INSERT [dbo].[Student] ([StudentID], [FirstName], [LastName], [DateofBirth], [StreetAddress], [City], [Sate], [ZipCode], [ContactNo], [Email], [Active]) VALUES (1, N'Imeyshan', N'Madhusanka', CAST(N'1990-09-23' AS Date), N'Piliyndala', N'Piliyndala', N'Piliyndala', N'10306', N'0773221770', N'imeyshan@gmail.com', 1)
+INSERT [dbo].[Student] ([StudentID], [FirstName], [LastName], [DateofBirth], [StreetAddress], [City], [Sate], [ZipCode], [ContactNo], [Email], [Active]) VALUES (1, N'Test', N'Madhusanka', CAST(N'1990-09-23' AS Date), N'Piliyndala', N'Piliyndala', N'Piliyndala', N'10306', N'0773221770', N'imeyshan@gmail.com', 1)
 GO
 INSERT [dbo].[Student] ([StudentID], [FirstName], [LastName], [DateofBirth], [StreetAddress], [City], [Sate], [ZipCode], [ContactNo], [Email], [Active]) VALUES (2, N'Imeyshan', N'Madhusanka', CAST(N'1990-09-23' AS Date), N'Piliyndala', N'Piliyndala', N'Piliyndala', N'10306', N'0773221770', N'imeyshan@gmail.com', 1)
 GO
 SET IDENTITY_INSERT [dbo].[Student] OFF
+GO
+/****** Object:  StoredProcedure [dbo].[SPGetStudents]    Script Date: 23/07/2023 11:36:11 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SPGetStudents]
+ @StudentID int 
+As 
+Begin 
+if @StudentID =-1  
+ begin   
+  SELECT [StudentID]
+      ,[FirstName]
+      ,[LastName]
+      ,[DateofBirth]
+      ,[StreetAddress]
+      ,[City]
+      ,[Sate]
+      ,[ZipCode]
+      ,[ContactNo]
+      ,[Email]
+      ,[Active]
+  FROM [dbo].[Student] ORDER BY StudentID
+ End
+Else  
+ begin  
+  SELECT [StudentID]
+      ,[FirstName]
+      ,[LastName]
+      ,[DateofBirth]
+      ,[StreetAddress]
+      ,[City]
+      ,[Sate]
+      ,[ZipCode]
+      ,[ContactNo]
+      ,[Email]
+      ,[Active]
+  FROM [dbo].[Student] WHERE  StudentID=@StudentID
+End
+End
+GO
+/****** Object:  StoredProcedure [dbo].[SPSaveStudent]    Script Date: 23/07/2023 11:36:11 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+CREATE procedure [dbo].[SPSaveStudent]
+@StudentID int,
+@FirstName varchar(100),
+@LastName varchar(100),
+@DateofBirth date,
+@StreetAddress varchar(100),
+@City varchar(100),
+@Sate varchar(50),
+@ZipCode varchar(20),
+@ContactNo varchar(20),
+@Email varchar(100),
+@Active bit
+
+as
+
+set nocount on
+
+/*if (@GrvSplitFixedCost=NULL) set @GrvSplitFixedCost = 0 */
+
+/*begin tran*/
+
+declare @SPError int
+
+if (@StudentID > 0) begin
+  
+  UPDATE [dbo].[Student]
+   SET [FirstName] = @FirstName
+      ,[LastName] = @LastName
+      ,[DateofBirth] = @DateofBirth
+      ,[StreetAddress] = @StreetAddress
+      ,[City] = @City
+      ,[Sate] = @Sate
+      ,[ZipCode] = @ZipCode
+      ,[ContactNo] = @ContactNo
+      ,[Email] = @Email
+      ,[Active] = @Active
+ WHERE StudentID=@StudentID
+
+  set @SPError = @@ERROR
+  if @SPError <> 0 goto AbortTran
+end
+else begin
+  
+  INSERT INTO [dbo].[Student]
+           ([FirstName]
+           ,[LastName]
+           ,[DateofBirth]
+           ,[StreetAddress]
+           ,[City]
+           ,[Sate]
+           ,[ZipCode]
+           ,[ContactNo]
+           ,[Email]
+           ,[Active])
+     VALUES
+           (@FirstName
+           ,@LastName
+           ,@DateofBirth
+           ,@StreetAddress
+           ,@City
+           ,@Sate
+           ,@ZipCode
+           ,@ContactNo
+           ,@Email
+           ,@Active) 
+
+  set @SPError = @@ERROR
+  if @SPError <> 0 goto AbortTran
+
+  declare @NewIdentity int
+  set @NewIdentity = @@Identity
+end
+
+
+goto CommitTran
+
+AbortTran:
+  /*rollback tran*/
+  RAISERROR (@SPError, 16, 1)
+  return 0
+
+CommitTran:
+ /* commit tran */
+  if (@StudentID= 0)
+    return @NewIdentity
+  else
+    return @StudentID
+
+
+
+GO
+USE [master]
+GO
+ALTER DATABASE [Task] SET  READ_WRITE 
 GO
